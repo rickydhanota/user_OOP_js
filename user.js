@@ -12,4 +12,8 @@ class User{
     makeDeposit(amount){
         this.accountBalance += amount;
     }
+
+    displayBalance(){
+        console.log(`${this.username} account balance is: ${this.accountBalance}`);
+    }
 }
