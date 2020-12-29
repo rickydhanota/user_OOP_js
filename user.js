@@ -17,3 +17,11 @@ class User{
         console.log(`${this.username} account balance is: ${this.accountBalance}`);
     }
 }
+
+const ricky = new User("Ricky Dhanota", "rickdhanota@gmail.com");
+ricky.makeDeposit(200);
+ricky.makeDeposit(100);
+ricky.makeDeposit(300);
+ricky.displayBalance();
+ricky.makeWithdrawal(100);
+ricky.displayBalance();
