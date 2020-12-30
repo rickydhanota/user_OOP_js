@@ -3,6 +3,7 @@ class User{
         this.username = username;
         this.email = email;
         this.accountBalance = 0;
+        return this;
     }
 
     makeWithdrawal(amount){
