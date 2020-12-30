@@ -35,21 +35,26 @@ class User{
 }
 
 class BankAccount{
-    constructor(intRate, balance) { // don't forget to add some default values for these parameters!
-    // your code here! (remember, this is where we specify the attributes for our class)
-	// don't worry about user info here; we'll involve the User class soon
+    constructor(intRate = 0.02, balance = 0) {
+        this.intRate = intRate;
+        this.balance = balance;
+        return this; 
     }
     deposit(amount) {
-	// your code here
+        this.balance += amount;
+        return this;
     }
     withdraw(amount) {
-	// your code here
+        this.balance -= amount;
+        return this;
     }
     displayAccountInfo() {
-	// your code here
+        console.log(`${this.balance}, Interest Rate: ${this.intRate}`);
+        return this;
     }
     yieldInterest() {
-	// your code here
+        this.balance += this.balance*this.intRate;
+        return this;
     }
 }
 
