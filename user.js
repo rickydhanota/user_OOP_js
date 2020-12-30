@@ -7,23 +7,28 @@ class User{
 
     makeWithdrawal(amount){
         this.accountBalance -= amount;
+        return this;
     }
 
     makeDeposit(amount){
         this.accountBalance += amount;
+        return this;
     }
 
     displayBalance(){
         console.log(`${this.username} account balance is: ${this.accountBalance}`);
+        return this;
     }
 
     transferMoney(otherUser, amount){
         if(this.accountBalance < amount){
             console.log("Not enough funds");
+            return this;
         }
         else{
             this.accountBalance -= amount;
             otherUser.accountBalance += amount;
+            return this;
         }
     }
 }
@@ -31,12 +36,6 @@ class User{
 const ricky = new User("Ricky Dhanota", "rickdhanota@gmail.com");
 const sukhpreet = new User("Sukhpreet Dhanota", "preetxgill@gmail.com");
 
-ricky.makeDeposit(200);
-ricky.makeDeposit(100);
-ricky.makeDeposit(300);
-ricky.displayBalance();
-ricky.makeWithdrawal(100);
-ricky.displayBalance();
-ricky.transferMoney(sukhpreet, 100);
+ricky.makeDeposit(200).makeDeposit(100).makeDeposit(300).displayBalance().makeWithdrawal(100).displayBalance().transferMoney(sukhpreet, 100);
 sukhpreet.displayBalance();
 ricky.displayBalance();
