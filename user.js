@@ -1,41 +1,5 @@
-class User{
-    constructor(username, email){
-        this.username = username;
-        this.email = email;
-        this.accountBalance = 0;
-        return this;
-    }
-
-    makeWithdrawal(amount){
-        this.accountBalance -= amount;
-        return this;
-    }
-
-    makeDeposit(amount){
-        this.accountBalance += amount;
-        return this;
-    }
-
-    displayBalance(){
-        console.log(`${this.username} account balance is: ${this.accountBalance}`);
-        return this;
-    }
-
-    transferMoney(otherUser, amount){
-        if(this.accountBalance < amount){
-            console.log("Not enough funds");
-            return this;
-        }
-        else{
-            this.accountBalance -= amount;
-            otherUser.accountBalance += amount;
-            return this;
-        }
-    }
-}
-
 class BankAccount{
-    constructor(intRate = 0.02, balance = 0) {
+    constructor(intRate = 0.08, balance = 0) {
         this.intRate = intRate;
         this.balance = balance;
         return this; 
@@ -58,9 +22,48 @@ class BankAccount{
     }
 }
 
+class User{
+    constructor(name, email){
+        this.name = name;
+        this.email = email;
+        this.account = new BankAccount();
+        return this;
+    }
+
+    makeWithdrawal(amount){
+        this.account.withdraw(amount);
+        return this;
+    }
+
+    makeDeposit(amount){
+        this.account.deposit(amount);
+        return this;
+    }
+
+    displayBalance(){
+        console.log(`Name: ${this.name}, Account Balance: $${this.account.balance}, Interest Rate: ${this.account.intRate}`);
+        this.account.displayAccountInfo()
+        return this;
+    }
+
+    transferMoney(otherUser, amount){
+        if(this.account.balance < amount){
+            console.log("Not enough funds");
+            return this;
+        }
+        else{
+            this.account.balance -= amount;
+            otherUser.account.balance += amount;
+            return this;
+        }
+    }
+}
+
+
 const ricky = new User("Ricky Dhanota", "rickdhanota@gmail.com");
 const sukhpreet = new User("Sukhpreet Dhanota", "preetxgill@gmail.com");
 
-ricky.makeDeposit(200).makeDeposit(100).makeDeposit(300).displayBalance().makeWithdrawal(100).displayBalance().transferMoney(sukhpreet, 100);
-sukhpreet.displayBalance();
-ricky.displayBalance();
+ricky.makeDeposit(200).makeDeposit(100).makeDeposit(300).displayBalance().makeWithdrawal(100).displayBalance();
+// ricky.transferMoney(sukhpreet, 100);
+// sukhpreet.displayBalance();
+// ricky.displayBalance();
